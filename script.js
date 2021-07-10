@@ -45,38 +45,41 @@ function userInput() {
   return input; 
 }; 
 
+//gets a random character from an array and adds it to the garuanteenedCharacters array 
+function getRandom(x) {
+  var garuanteenedCharacter = x[Math.floor(Math.random() * x.length)];
+  garuanteenedCharacters.push(garuanteenedCharacter);
+  return; 
+}; 
+
 function generatePassword() {
 // this passes all of the data from the userInput function into here
   var pwdInput = userInput(); 
 
-  // these act as placeholders to hold info from the if and if else statements 
+  // these act as placeholders to hold info from the if statements 
   garuanteenedCharacters = []; 
   possibleCharacters = []; 
   results = []; 
 
   //if user asks for symbols 
   if (pwdInput.usesPunctuation === true) {
-    var possibleCharacters = possibleCharacters.concat(punctuation); 
-    var garuanteenedCharacter = punctuation[Math.floor(Math.random() * punctuation.length)]; 
-    garuanteenedCharacters.push(garuanteenedCharacter); 
+    var possibleCharacters = possibleCharacters.concat(punctuation);
+    getRandom(punctuation);  
   }
   //if user asks for numbers 
   if (pwdInput.usesNumeric === true) {
     var possibleCharacters = possibleCharacters.concat(numeric); 
-    var garuanteenedCharacter = numeric[Math.floor(Math.random() * numeric.length)]; 
-    garuanteenedCharacters.push(garuanteenedCharacter); 
+    getRandom(numeric); 
   }
   //if user asks for Uppercase letters 
   if (pwdInput.usesUppercase === true) {
     var possibleCharacters = possibleCharacters.concat(uppercase); 
-    var garuanteenedCharacter = uppercase[Math.floor(Math.random() * uppercase.length)]; 
-    garuanteenedCharacters.push(garuanteenedCharacter);
+    getRandom(uppercase); 
   }
   //if user asks for Lowercase letters 
   if (pwdInput.usesLowercase === true) {
     var possibleCharacters = possibleCharacters.concat(lowercase); 
-    var garuanteenedCharacter = lowercase[Math.floor(Math.random() * lowercase.length)]; 
-    garuanteenedCharacters.push(garuanteenedCharacter);
+    getRandom(lowercase); 
   }
 
   //pulls through the garuanteenedCharacters and puts it into the results array 
@@ -89,6 +92,8 @@ function generatePassword() {
   for (i = 0; i < garuanteenedCharacters.length; i++) {
     results[i] = garuanteenedCharacters[i]; 
   }
+
+  //takes the commas out of the password display 
   var password = results.join(""); 
   return password; 
 }
@@ -99,16 +104,8 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 //Add event listener to generate button when you click the generate button, it runs the function writePassword 
 generateBtn.addEventListener("click", writePassword);
 
-
-
-//store empty arrays = results, possible characters to use, garuateened characters based on users choices 
-  // create if statesments = if pwdInput. usesLowercase, then inside .concat (method that adds the different arrays together)
-  // google concat **once user agrees to the any of the data types, it concats or adds the arrays together 
-  // for loops using the length 
-  // Math.floor(Math.random() * str.length +1) = don't put it in a for loop 
