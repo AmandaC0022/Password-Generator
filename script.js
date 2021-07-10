@@ -52,7 +52,7 @@ function generatePassword() {
   // these act as placeholders to hold info from the if and if else statements 
   garuanteenedCharacters = []; 
   possibleCharacters = []; 
-  result = []; 
+  results = []; 
 
   //if user asks for symbols 
   if (pwdInput.usesPunctuation === true) {
@@ -78,8 +78,19 @@ function generatePassword() {
     var garuanteenedCharacter = lowercase[Math.floor(Math.random() * lowercase.length)]; 
     garuanteenedCharacters.push(garuanteenedCharacter);
   }
-  //for loop needs to go here 
-  return; 
+
+  //pulls through the garuanteenedCharacters and puts it into the results array 
+  for (i = 0; i < pwdInput.length; i++) {
+    var resultCharacter = possibleCharacters[Math.floor(Math.random() * possibleCharacters.length)]; 
+    results.push(resultCharacter); 
+  }
+
+  //combine the results with random characters to create the final password 
+  for (i = 0; i < garuanteenedCharacters.length; i++) {
+    results[i] = garuanteenedCharacters[i]; 
+  }
+  var password = results.join(""); 
+  return password; 
 }
 
 //Write password to the #password input
@@ -101,52 +112,3 @@ generateBtn.addEventListener("click", writePassword);
   // google concat **once user agrees to the any of the data types, it concats or adds the arrays together 
   // for loops using the length 
   // Math.floor(Math.random() * str.length +1) = don't put it in a for loop 
-
-
-//created function to generate a random character 
-// function garuanteedCharacters(options) {
-//   var index = Math.floor(Math.random() * options.length)
-//   var garuanteedCharacters = options[index]; 
-// }
-
-
-// if (usesPunctuation === true) {
-    
-  // } else if (usesNumeric === true) {
-  //   var possibleCharacters = lowercase.concat(numeric); 
-  //   var garuanteenedCharacters = possibleCharacters[Math.floor(Math.random() * possibleCharacters.length)]; 
-  // } else if (usesUppercase === true) {
-  //   var possibleCharacters = lowercase.concat(uppercase); 
-  //   var garuanteenedCharacters = possibleCharacters[Math.floor(Math.random() * possibleCharacters.length)]; 
-  // } else {
-  //   var garuanteenedCharacters = lowercase[Math.floor(Math.random() * lowercase.length)]; 
-  // }
-
-
-// if (usesNumeric === true && usesPunctuation === true) {
-  //   var numericAndPunctuation = lowercaseAndNumeric.concat(punctuation); 
-  // }
-  
-  // if (usesUppercase === true && usesNumeric === true) {
-  //   var uppercaseAndNumeric = lowercaseAndNumeric.concat(uppercase); 
-  // }
-  
-  // if (usesUppercase === true && usesPunctuation === true) {
-  //   var uppercaseAndPunctuation = lowercaseAndNumeric.concat(punctuation); 
-  // }
-
-  // if (usesUppercase === true && usesPunctuation === true && usesNumeric === true && usesLowercase === true) {
-  //   var possibleCharacters = lowercaseAndNumeric.concat(uppercaseAndPunctuation); 
-  //   var garuanteenedCharacters = possibleCharacters[Math.floor(Math.random() * possibleCharacters.length)];
-  // }
-  // if (usesLowercase === true && usesUppercase === true && usesNumeric === true) {
-  //   var possibleCharacters = uppercase.concat(numeric); 
-  //   var garuanteenedCharacters = possibleCharacters[Math.floor(Math.random() * possibleCharacters.length)];
-  // }
-  // if (usesLowercase === true && usesUppercase === true) {
-  //   var possibleCharacters = uppercase.concat(lowercase);  
-  //   var garuanteenedCharacters = possibleCharacters[Math.floor(Math.random() * possibleCharacters.length)];
-  // } 
-  // if (usesLowercase === true) {
-  //   var garuanteenedCharacters = lowercase[Math.floor(Math.random() * lowercase.length)]; // this selects 1 letter to be used for the final password
-  // }
